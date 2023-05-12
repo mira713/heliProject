@@ -1,0 +1,62 @@
+.nav{
+    height:15vh;
+    width:100%;
+    position : fixed;
+    display:flex;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-image: linear-gradient(to right, #31072d , #b217a3);
+    color:white;
+    z-index: 2;
+}
+.inpt{
+    position: absolute;
+    top:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: space-around;
+    width:43%;
+    left:52%
+}
+.icn{
+    position: absolute;
+    top:50%;
+    transform: translate(-50%,-50%);
+    right:5%
+}
+.icn:hover{
+    cursor: pointer;
+}
+.logo{
+    position: absolute;
+    left:5%
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px
+}
+.addIcn:hover{
+    cursor: pointer;
+}
+.crossIcn:hover{
+    cursor:no-drop
+}
+.modal{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    height:200px;
+    width:200px;
+}
+@media only screen and (max-width: 1000px) {
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media only screen and (max-width: 600px) {
+    .grid{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
