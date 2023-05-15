@@ -1,13 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import "./style.css";
 import {
-    Box, Image, Button, Input, Text,Grid
+    Box, Image, Button, Input, Text,Grid,Heading
 } from '@chakra-ui/react';
 import { RiTeamFill } from 'react-icons/ri'
 
 const Team = () => {
     let users = JSON.parse(localStorage.getItem('user'))||[]
     let [search, setSearch] = useState('');
+    let [data, setData] = useState(users)
 
     let handleChange = (e) => {
         let text = e.target.value;
@@ -16,6 +17,12 @@ const Team = () => {
 
     let onOpens = (e) => {
         
+    }
+
+    let removeData=(element)=>{
+      let filtered =  users.filter(el => el.id!==element.id);
+      localStorage.setItem('user',JSON.stringify(filtered));
+      setData(filtered)
     }
 
   return (
@@ -29,6 +36,7 @@ const Team = () => {
                     <Button color='black' onClick={() => onOpens()} >Search</Button>
                 </Box>
                 <Box className="icn">
+                <Text bgColor={'red'} w="20px" borderRadius={'5px'}>{users.length}</Text>
                     <RiTeamFill size="30" />
                     <Text>Team</Text>
                 </Box>
@@ -36,7 +44,7 @@ const Team = () => {
             <Box position="absolute" >
                 <Grid mt="16vh" gap="20px" gridTemplateColumns={'repeat(2,1fr)'} ml={['10%','30%','50%','70%',"100%" ]}>
                     {
-                        users.map((el)=>{
+                        data.map((el)=>{
                             return (
                                 <Box key={el.id} w="100%" margin="auto"p="4" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px">
                                     <Box w="100%" margin="auto">
@@ -47,7 +55,7 @@ const Team = () => {
                                         <Text>Gender : {el.gender}</Text>
                                         <Text>Domain : {el.domain}</Text>
                                         <Text>Available : Yes</Text>
-                                        <Button backgroundImage="linear-gradient(to right,#31072d , #b217a3)"color="white">Remove Member</Button>
+                                        <Button backgroundImage="linear-gradient(to right,#31072d , #b217a3)"color="white" onClick={()=>removeData(el)}>Remove Member</Button>
                                     </Box>
                                 </Box>
                             )
